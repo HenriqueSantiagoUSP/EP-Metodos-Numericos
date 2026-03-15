@@ -61,15 +61,22 @@ ep/
 
 ## Dependências
 
-| Dependência | Versão mínima | Descrição |
-|---|---|---|
-| **GCC** | 4.9+ | Compilador C com suporte a C99 (VLAs) |
-| **CMake** | 3.10+ | Sistema de build |
-| **Make** | — | Ferramenta de automação de build |
-| **libm** | — | Biblioteca matemática padrão (linkada automaticamente) |
+| Dependência | Versão mínima | Plataforma | Descrição |
+|---|---|---|---|
+| **GCC** | 4.9+ | Linux / Windows (MinGW/MSYS2) | Compilador C com suporte a C99 (VLAs) |
+| **MSVC** | 2019+ | Windows | Alternativa ao GCC no Windows (via Visual Studio) |
+| **CMake** | 3.10+ | Linux / Windows | Sistema de build |
+| **Make** | — | Linux / Windows (MSYS2) | Ferramenta de automação de build |
+| **Ninja** | 1.10+ | Linux / Windows | Gerador alternativo, mais rápido que Make |
+| **libm** | — | Linux | Biblioteca matemática padrão (linkada automaticamente) |
 
+> **Windows:** no Windows, `libm` é parte do runtime C padrão e não precisa ser linkada separadamente.
+
+---
 
 ## Como Compilar
+
+### Linux
 
 1. **Navegue até o diretório do projeto:**
 
@@ -83,25 +90,85 @@ cd /caminho/para/ep
 mkdir -p build && cd build
 ```
 
-3. **Gere os arquivos de build com o CMake:**
+3. **Gere os arquivos de build e compile:**
 
+**Com Make (padrão):**
 ```bash
 cmake ..
-```
-
-4. **Compile o projeto:**
-
-```bash
 make
 ```
 
-Isso gerará três executáveis dentro de `build/`:
+**Com Ninja:**
+```bash
+cmake -G Ninja ..
+ninja
+```
+
+---
+
+### Windows
+
+No Windows, há duas abordagens principais:
+
+#### Opção A — MSYS2 / MinGW-w64 (recomendado para ambiente Unix-like)
+
+1. Instale o [MSYS2](https://www.msys2.org/) e, no terminal MSYS2, instale as dependências:
+
+```bash
+pacman -S mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake mingw-w64-x86_64-make mingw-w64-x86_64-ninja
+```
+
+2. Navegue até o diretório do projeto e compile:
+
+**Com Make:**
+```bash
+mkdir -p build && cd build
+cmake -G "MinGW Makefiles" ..
+mingw32-make
+```
+
+**Com Ninja:**
+```bash
+mkdir -p build && cd build
+cmake -G Ninja ..
+ninja
+```
+
+#### Opção B — Visual Studio (MSVC)
+
+1. Instale o [Visual Studio](https://visualstudio.microsoft.com/) com o componente **"Desenvolvimento para desktop com C++"** e o [CMake](https://cmake.org/download/).
+
+2. Abra o **Developer Command Prompt** do Visual Studio e navegue até o projeto.
+
+3. Compile:
+
+**Com MSBuild (padrão do Visual Studio):**
+```cmd
+mkdir build && cd build
+cmake ..
+cmake --build .
+```
+
+**Com Ninja:**
+```cmd
+mkdir build && cd build
+cmake -G Ninja ..
+ninja
+```
+
+> **Nota:** o padrão C99 com VLAs é suportado pelo GCC/MinGW. No MSVC, o suporte a VLAs não é garantido — caso encontre erros de compilação, utilize a Opção A (MSYS2/MinGW).
+
+---
+
+## Executáveis Gerados
+
+Após a compilação, os seguintes executáveis são gerados dentro de `build/`:
 
 | Executável | Descrição |
 |---|---|
-| `ep` | Programa principal do EP |
-| `test_ep_tarefa1` | Testes das funções da Tarefa 1 |
-| `test_ep_tarefa2` | Testes das funções da Tarefa 2 |
+| `ep` / `ep.exe` | Programa principal do EP |
+| `test_ep_tarefa1` / `test_ep_tarefa1.exe` | Testes das funções da Tarefa 1 |
+| `test_ep_tarefa2` / `test_ep_tarefa2.exe` | Testes das funções da Tarefa 2 |
 
 ---
 
@@ -109,15 +176,18 @@ Isso gerará três executáveis dentro de `build/`:
 
 Após a compilação, a partir do diretório `build/`:
 
+**Linux:**
 ```bash
-# Programa principal
 ./ep
-
-# Testes da Tarefa 1
 ./test_ep_tarefa1
-
-# Testes da Tarefa 2
 ./test_ep_tarefa2
+```
+
+**Windows:**
+```cmd
+ep.exe
+test_ep_tarefa1.exe
+test_ep_tarefa2.exe
 ```
 
 Os testes utilizam dados gerados aleatoriamente para validar cada função, imprimindo os resultados na saída padrão para verificação manual.
@@ -129,4 +199,4 @@ Os testes utilizam dados gerados aleatoriamente para validar cada função, impr
 - **Linguagem:** C (padrão C99)
 - **Build system:** CMake ≥ 3.10
 - As funções fazem uso de **VLAs** (*Variable Length Arrays*), um recurso do C99
-- A biblioteca matemática (`-lm`) é linkada para uso da função `sqrt()`
+- A biblioteca matemática (`-lm`) é linkada no Linux; no Windows com MSVC ela é incluída automaticamente
