@@ -1,0 +1,32 @@
+cmake_minimum_required(VERSION 3.10)
+project(EP C)
+
+set(CMAKE_C_STANDARD 99)
+
+include_directories(include)
+
+set(SOURCES
+    src/random.c
+    src/ep_tarefa1.c
+    src/ep_tarefa2.c
+)
+
+# executável principal 
+add_executable(ep
+    src/ep.c
+    ${SOURCES}
+)
+
+add_executable(test_ep_tarefa1
+    tests/test_ep_tarefa1.c
+    ${SOURCES}
+)
+
+add_executable(test_ep_tarefa2
+    tests/test_ep_tarefa2.c
+    ${SOURCES}
+)
+
+target_link_libraries(ep m)
+target_link_libraries(test_ep_tarefa1 m)
+target_link_libraries(test_ep_tarefa2 m)
