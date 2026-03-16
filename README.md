@@ -122,14 +122,16 @@ pacman -S mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake mingw-w64-x86_64-make ming
 
 **Com Make:**
 ```bash
-mkdir -p build && cd build
+mkdir -p build
+cd build
 cmake -G "MinGW Makefiles" ..
 mingw32-make
 ```
 
 **Com Ninja:**
 ```bash
-mkdir -p build && cd build
+mkdir -p build
+cd build
 cmake -G Ninja ..
 ninja
 ```
@@ -144,14 +146,16 @@ ninja
 
 **Com MSBuild (padrão do Visual Studio):**
 ```cmd
-mkdir build && cd build
+mkdir build
+cd build
 cmake ..
 cmake --build .
 ```
 
 **Com Ninja:**
 ```cmd
-mkdir build && cd build
+mkdir build
+cd build
 cmake -G Ninja ..
 ninja
 ```
