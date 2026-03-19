@@ -33,7 +33,6 @@ void imprimir_matriz(int M, int N, double A[M][N], char *nome) {
 
     printf("\n");
   }
-  printf("\n");
 }
 
 void imprimir_vetor(int M, double v[M], char *nome) {

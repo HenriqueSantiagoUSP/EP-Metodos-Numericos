@@ -1,8 +1,8 @@
 /*
 FUNÇÕES DA TAREFA EP_TAREFA2
 */
-#ifndef EP_TAREFA2
-#define EP_TAREFA2
+#ifndef EP_TAREFA2_H
+#define EP_TAREFA2_H
 
 //===========================================================================
 /* Extrai coluna j da matriz A para um vetor v

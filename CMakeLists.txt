@@ -9,6 +9,7 @@ set(SOURCES
     src/random.c
     src/ep_tarefa1.c
     src/ep_tarefa2.c
+    src/ep_tarefa3.c
 )
 
 # executável principal 
@@ -27,6 +28,12 @@ add_executable(test_ep_tarefa2
     ${SOURCES}
 )
 
+add_executable(test_ep_tarefa3
+    tests/test_ep_tarefa3.c
+    ${SOURCES}
+)
+
 target_link_libraries(ep m)
 target_link_libraries(test_ep_tarefa1 m)
 target_link_libraries(test_ep_tarefa2 m)
+target_link_libraries(test_ep_tarefa3 m)

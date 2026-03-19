@@ -1,8 +1,8 @@
 /*
 FUNÇÕES DA TAREFA EP_TAREFA1
 */
-#ifndef EP_TAREFA1
-#define EP_TAREFA1
+#ifndef EP_TAREFA1_H
+#define EP_TAREFA1_H
 
 //===========================================================================
 /* Imprime a matriz

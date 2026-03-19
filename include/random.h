@@ -52,4 +52,6 @@ double* gera_rand_matrix(int M, int N, double min, double max);
 
 //===========================================================================
 
+double* gera_rand_mat_triangular(int N, double min, double max);
+
 #endif

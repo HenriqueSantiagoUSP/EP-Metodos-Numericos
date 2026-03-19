@@ -28,3 +28,13 @@ double* gera_rand_matrix(int M, int N, double min, double max){
   }
   return mat;
 }
+
+double* gera_rand_mat_triangular(int N, double min, double max){
+  double* mat = calloc(N*N, sizeof(double));
+  for (int i = 0; i < N; i++){
+    for (int j = N - 1; j >= i; j--){
+      mat[N*i+j] = rand_range(min, max); // Elementos entre min e max
+    }
+  }
+  return mat;
+}
