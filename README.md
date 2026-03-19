@@ -15,15 +15,18 @@ ep/
 ├── include/                # Headers das funções
 │   ├── ep_tarefa1.h        # Declarações — Tarefa 1
 │   ├── ep_tarefa2.h        # Declarações — Tarefa 2
+│   ├── ep_tarefa3.h        # Declarações — Tarefa 3
 │   └── random.h            # Utilitários de geração aleatória
 ├── src/                    # Implementações
 │   ├── ep.c                # Programa principal (desafio final)
 │   ├── ep_tarefa1.c        # Implementação — Tarefa 1
 │   ├── ep_tarefa2.c        # Implementação — Tarefa 2
+│   ├── ep_tarefa3.c        # Implementação — Tarefa 3
 │   └── random.c            # Geração aleatória de vetores e matrizes
 ├── tests/                  # Testes
 │   ├── test_ep_tarefa1.c   # Testes — Tarefa 1
-│   └── test_ep_tarefa2.c   # Testes — Tarefa 2
+│   ├── test_ep_tarefa2.c   # Testes — Tarefa 2
+│   └── test_ep_tarefa3.c   # Testes — Tarefa 3
 └── build/                  # Diretório de build (gerado pelo CMake)
 ```
 
@@ -48,6 +51,12 @@ ep/
 | `copiar_coluna(M, N, j, A, B)` | Copia a coluna *j* da matriz A para a matriz B |
 | `multiplicacao_transposta_vetor(M, N, A, x, y)` | Calcula y = Aᵀ · x |
 
+### Tarefa 3 — Resolução de Sistemas Triangulares
+
+| Função | Descrição |
+|---|---|
+| `resolver_sistema_triangular_superior(N, R, b, x)` | Resolve o sistema linear Rx = b por retrossubstituição, onde R é triangular superior |
+
 ### Utilitários (`random.h`)
 
 | Função | Descrição |
@@ -56,6 +65,7 @@ ep/
 | `rand_range(min, max)` | Gera um número aleatório no intervalo [min, max] |
 | `gera_rand_vet(N, min, max)` | Gera um vetor de N elementos aleatórios |
 | `gera_rand_matrix(M, N, min, max)` | Gera uma matriz M×N com elementos aleatórios |
+| `gera_rand_mat_triangular(N, min, max)` | Gera uma matriz triangular superior N×N com elementos aleatórios |
 
 ---
 
@@ -173,6 +183,7 @@ Após a compilação, os seguintes executáveis são gerados dentro de `build/`:
 | `ep` / `ep.exe` | Programa principal do EP |
 | `test_ep_tarefa1` / `test_ep_tarefa1.exe` | Testes das funções da Tarefa 1 |
 | `test_ep_tarefa2` / `test_ep_tarefa2.exe` | Testes das funções da Tarefa 2 |
+| `test_ep_tarefa3` / `test_ep_tarefa3.exe` | Testes das funções da Tarefa 3 |
 
 ---
 
@@ -185,6 +196,7 @@ Após a compilação, a partir do diretório `build/`:
 ./ep
 ./test_ep_tarefa1
 ./test_ep_tarefa2
+./test_ep_tarefa3
 ```
 
 **Windows:**
@@ -192,6 +204,7 @@ Após a compilação, a partir do diretório `build/`:
 ep.exe
 test_ep_tarefa1.exe
 test_ep_tarefa2.exe
+test_ep_tarefa3.exe
 ```
 
 Os testes utilizam dados gerados aleatoriamente para validar cada função, imprimindo os resultados na saída padrão para verificação manual.
