@@ -7,7 +7,7 @@ FUNÇÕES DA TAREFA EP_TAREFA3
 //===========================================================================
 /* Resolve Sistema trinagular superior
 
-Parâmetros:
+Parametros:
 - N: Dimensão da matriz R e tamanho dos vetores b e x
 - R: Matriz triangular superior
 - b: Vetor independente

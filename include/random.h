@@ -51,7 +51,14 @@ Retorna: Uma matrix MxN com elementos aleatorios entre min e max
 double* gera_rand_matrix(int M, int N, double min, double max);
 
 //===========================================================================
+/* Gera matriz triangular superior aleatoria
 
+Parametros:
+- N:  Dimensão da matriz NxN
+- min: Limite inferior dos elementos aleatorios da matriz
+- max: Limite superior dos elementos aleatorios da matriz
+
+*/
 double* gera_rand_mat_triangular(int N, double min, double max);
 
 #endif

@@ -33,7 +33,10 @@ double* gera_rand_mat_triangular(int N, double min, double max){
   double* mat = calloc(N*N, sizeof(double));
   for (int i = 0; i < N; i++){
     for (int j = N - 1; j >= i; j--){
-      mat[N*i+j] = rand_range(min, max); // Elementos entre min e max
+      if (i == j)
+        mat[N*i+j] = rand_range(1, max); // Diagonal nunca zero
+      else
+        mat[N*i+j] = rand_range(min, max);
     }
   }
   return mat;
