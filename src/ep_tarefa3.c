@@ -15,8 +15,8 @@ void resolver_sistema_triangular_superior(int N, double R[N][N], double b[N], do
    */
 
   // COMPlETAR
-    double sum = 0;
     for (int i = N - 1; i >= 0; i--){
+        double sum = 0;
         for (int j = i + 1; j < N; j++){
             sum += R[i][j]*x[j];
         }
