@@ -41,14 +41,17 @@ int main(){
     // Teste resolve sistema triangular superior: (R, b, x)
 
     printf("\n===========================================================================\n");
-    printf("1. Teste: Resolver sistema triangular superior: R.x = b\n");
+    printf("1. Teste: Resolver sistema triangular superior\n");
+
+    printf("Resolvendo Rx = b, com R e b iguais a:\n");
+    imprimir_matriz(N, N, R, "R");
+    imprimir_vetor(N, b, "b");
 
     // Resolve sistema
     resolver_sistema_triangular_superior(N, R, b, x);
 
-    imprimir_matriz(N, N, R, "R");
+    printf("\nResultado:\n");
     imprimir_vetor(N, x, "x");
-    imprimir_vetor(N, b, "b");
 
     // Libera pointers
     free(R);
