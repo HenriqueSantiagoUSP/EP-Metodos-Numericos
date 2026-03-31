@@ -18,7 +18,7 @@ Parametros:
 void extrair_coluna(int M, int N, int j, double A[M][N], double v[M]);
 
 //===========================================================================
-/* Copia a coluna j da mstriz A e cola na coluna j da matriz B
+/* Copia a coluna j da matriz A e cola na coluna j da matriz B
 
 Parametros:
 - M: Numero de linhas das matrizes

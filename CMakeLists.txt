@@ -10,6 +10,7 @@ set(SOURCES
     src/ep_tarefa1.c
     src/ep_tarefa2.c
     src/ep_tarefa3.c
+    src/ep_tarefa4.c
 )
 
 # executável principal 
@@ -33,7 +34,13 @@ add_executable(test_ep_tarefa3
     ${SOURCES}
 )
 
+add_executable(test_ep_tarefa4
+    tests/test_ep_tarefa4.c
+    ${SOURCES}
+)
+
 target_link_libraries(ep m)
 target_link_libraries(test_ep_tarefa1 m)
 target_link_libraries(test_ep_tarefa2 m)
 target_link_libraries(test_ep_tarefa3 m)
+target_link_libraries(test_ep_tarefa4 m)
