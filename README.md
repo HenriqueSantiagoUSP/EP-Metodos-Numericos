@@ -16,17 +16,20 @@ ep/
 │   ├── ep_tarefa1.h        # Declarações — Tarefa 1
 │   ├── ep_tarefa2.h        # Declarações — Tarefa 2
 │   ├── ep_tarefa3.h        # Declarações — Tarefa 3
+│   ├── ep_tarefa4.h        # Declarações — Tarefa 4
 │   └── random.h            # Utilitários de geração aleatória
 ├── src/                    # Implementações
 │   ├── ep.c                # Programa principal (desafio final)
 │   ├── ep_tarefa1.c        # Implementação — Tarefa 1
 │   ├── ep_tarefa2.c        # Implementação — Tarefa 2
 │   ├── ep_tarefa3.c        # Implementação — Tarefa 3
+│   ├── ep_tarefa4.c        # Implementação — Tarefa 4
 │   └── random.c            # Geração aleatória de vetores e matrizes
 ├── tests/                  # Testes
 │   ├── test_ep_tarefa1.c   # Testes — Tarefa 1
 │   ├── test_ep_tarefa2.c   # Testes — Tarefa 2
-│   └── test_ep_tarefa3.c   # Testes — Tarefa 3
+│   ├── test_ep_tarefa3.c   # Testes — Tarefa 3
+│   └── test_ep_tarefa4.c   # Testes — Tarefa 4
 └── build/                  # Diretório de build (gerado pelo CMake)
 ```
 
@@ -56,6 +59,13 @@ ep/
 | Função | Descrição |
 |---|---|
 | `resolver_sistema_triangular_superior(N, R, b, x)` | Resolve o sistema linear Rx = b por retrossubstituição, onde R é triangular superior |
+
+### Tarefa 4 — Fatoração QR (Gram-Schmidt)
+
+| Função | Descrição |
+|---|---|
+| `gram_schmidt(M, N, A, Q, R)` | Fatora a matriz A = QR via processo de Gram-Schmidt, onde Q tem colunas ortonormais e R é triangular superior |
+| `multiplicar_QR(M, N, Q, R, resultado)` | Multiplica Q · R para verificação da fatoração (resultado ≈ A) |
 
 ### Utilitários (`random.h`)
 
@@ -184,6 +194,7 @@ Após a compilação, os seguintes executáveis são gerados dentro de `build/`:
 | `test_ep_tarefa1` / `test_ep_tarefa1.exe` | Testes das funções da Tarefa 1 |
 | `test_ep_tarefa2` / `test_ep_tarefa2.exe` | Testes das funções da Tarefa 2 |
 | `test_ep_tarefa3` / `test_ep_tarefa3.exe` | Testes das funções da Tarefa 3 |
+| `test_ep_tarefa4` / `test_ep_tarefa4.exe` | Testes das funções da Tarefa 4 |
 
 ---
 
@@ -197,6 +208,7 @@ Após a compilação, a partir do diretório `build/`:
 ./test_ep_tarefa1
 ./test_ep_tarefa2
 ./test_ep_tarefa3
+./test_ep_tarefa4
 ```
 
 **Windows:**
@@ -205,6 +217,7 @@ ep.exe
 test_ep_tarefa1.exe
 test_ep_tarefa2.exe
 test_ep_tarefa3.exe
+test_ep_tarefa4.exe
 ```
 
 Os testes utilizam dados gerados aleatoriamente para validar cada função, imprimindo os resultados na saída padrão para verificação manual.
