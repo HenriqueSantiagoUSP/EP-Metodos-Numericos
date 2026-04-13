@@ -25,6 +25,16 @@ int main(){
 
     int M = (int)rand_range(2, 6); // linhas
     int N = (int)rand_range(2, 6); // colunas
+    //int M = 3;
+    //int N = 2;
+
+    /*
+    double A[3][2] = {
+      {1, 0},
+      {1, 1},
+      {0, -1}
+    };
+    */
 
     // Matriz A
     double *ptr1 = gera_rand_matrix(M, N, MATRIX_MIN, MATRIX_MAX);

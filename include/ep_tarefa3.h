@@ -5,7 +5,7 @@ FUNÇÕES DA TAREFA EP_TAREFA3
 #define EP_TAREFA3_H
 
 //===========================================================================
-/* Resolve Sistema trinagular superior
+/* Resolve Sistema trinagular superior: Rx = b
 
 Parametros:
 - N: Dimensão da matriz R e tamanho dos vetores b e x
