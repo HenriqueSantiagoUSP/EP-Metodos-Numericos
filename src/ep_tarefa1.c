@@ -28,7 +28,7 @@ void imprimir_matriz(int M, int N, double A[M][N], char *nome) {
   for (int i = 0; i < M; i++){
 
     for (int j = 0; j < N; j++){
-      printf("%.2lf\t", A[i][j]);
+      printf("%12.2lf\t", A[i][j]);
     }
 
     printf("\n");
@@ -57,7 +57,7 @@ void imprimir_vetor(int M, double v[M], char *nome) {
   printf("\n%s =\n", nome);
 
   for (int i = 0; i < M; i++) {
-    printf("%.2lf\n", v[i]);
+    printf("%12.2lf\n", v[i]);
   }
 }
 

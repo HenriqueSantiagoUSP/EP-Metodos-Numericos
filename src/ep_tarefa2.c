@@ -69,6 +69,6 @@ void multiplicacao_transposta_vetor(int M, int N, double A[M][N], double x[M], d
 
   for (int i = 0; i < N; i++){
     extrair_coluna(M, N, i, A, buffer);
-    y[i] = produto_interno(N, buffer, x);
+    y[i] = produto_interno(M, buffer, x);
   }
 }

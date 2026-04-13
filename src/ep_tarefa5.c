@@ -46,3 +46,24 @@ void geo_cords(double x[], double* lat, double* lon){
   *lat = G*atan2(x[2], sqrt(x[0]*x[0] + x[1]*x[1]));
   *lon = G*atan2(x[1], x[0]);
 }
+
+void multiplicar_matriz(int M, int N, int J, double A[M][N], double B[N][J], double ret[M][J]){
+    for (int i = 0; i < M; i++){
+        for (int j = 0; j < J; j++){
+            double sum = 0;
+            for (int k = 0; k < N; k++){
+                sum += A[i][k] * B[k][j];
+            }
+            ret[i][j] = sum;
+        }
+    }
+}
+
+void soma_matriz(soma op, int M, int N, double A[M][N], double B[M][N], double ret[M][N]){
+  for (int i = 0; i < M; i++){
+    for (int j = 0; j < N; j++){
+      ret[i][j] = A[i][j] + pow(-1, op)*B[i][j];
+    }
+  }
+}
+
