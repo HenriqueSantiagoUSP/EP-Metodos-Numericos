@@ -2,7 +2,7 @@
 
 Exercício-Programa (EP) da disciplina de **Cálculo Numérico** do 3º semestre da **Universidade de São Paulo (USP)**.
 
-O projeto é desenvolvido de forma incremental: a cada semana é proposta uma **tarefa** contendo funções de álgebra linear a serem implementadas e testadas. Ao final de todas as tarefas, as funções são integradas no programa principal (`src/ep.c`) para resolver o desafio proposto pela disciplina.
+O projeto é desenvolvido de forma incremental: a cada semana é proposta uma **tarefa** contendo funções de álgebra linear a serem implementadas e testadas. Na tarefa final (Tarefa 5), todas as funções são integradas para resolver o **desafio de posicionamento GPS por mínimos quadrados**, determinando a localização de um receptor na superfície terrestre a partir de dados de satélites.
 
 ---
 
@@ -17,19 +17,26 @@ ep/
 │   ├── ep_tarefa2.h        # Declarações — Tarefa 2
 │   ├── ep_tarefa3.h        # Declarações — Tarefa 3
 │   ├── ep_tarefa4.h        # Declarações — Tarefa 4
+│   ├── ep_tarefa5.h        # Declarações — Tarefa 5
 │   └── random.h            # Utilitários de geração aleatória
 ├── src/                    # Implementações
-│   ├── ep.c                # Programa principal (desafio final)
 │   ├── ep_tarefa1.c        # Implementação — Tarefa 1
 │   ├── ep_tarefa2.c        # Implementação — Tarefa 2
 │   ├── ep_tarefa3.c        # Implementação — Tarefa 3
 │   ├── ep_tarefa4.c        # Implementação — Tarefa 4
+│   ├── ep_tarefa5.c        # Implementação — Tarefa 5
 │   └── random.c            # Geração aleatória de vetores e matrizes
 ├── tests/                  # Testes
 │   ├── test_ep_tarefa1.c   # Testes — Tarefa 1
 │   ├── test_ep_tarefa2.c   # Testes — Tarefa 2
 │   ├── test_ep_tarefa3.c   # Testes — Tarefa 3
-│   └── test_ep_tarefa4.c   # Testes — Tarefa 4
+│   ├── test_ep_tarefa4.c   # Testes — Tarefa 4
+│   └── test_ep_tarefa5.c   # Desafio final — Posicionamento GPS
+├── resources/              # Dados de entrada
+│   ├── input_gps_0.txt     # Coordenadas dos satélites (arquivo 0)
+│   ├── input_gps_1.txt     # Coordenadas dos satélites (arquivo 1)
+│   ├── input_gps_2.txt     # Coordenadas dos satélites (arquivo 2)
+│   └── input_gps_3.txt     # Coordenadas dos satélites (arquivo 3)
 └── build/                  # Diretório de build (gerado pelo CMake)
 ```
 
@@ -66,6 +73,15 @@ ep/
 |---|---|
 | `gram_schmidt(M, N, A, Q, R)` | Fatora a matriz A = QR via processo de Gram-Schmidt, onde Q tem colunas ortonormais e R é triangular superior |
 | `multiplicar_QR(M, N, Q, R, resultado)` | Multiplica Q · R para verificação da fatoração (resultado ≈ A) |
+
+### Tarefa 5 — Desafio Final: Posicionamento GPS
+
+| Função | Descrição |
+|---|---|
+| `ler_dados(nusp, M, N, A)` | Lê o arquivo de coordenadas dos satélites GPS (selecionado por `nusp % 4`) |
+| `geo_cords(x, lat, lon)` | Converte coordenadas cartesianas (x, y, z) em latitude e longitude (graus) |
+| `multiplicar_matriz(M, N, J, A, B, ret)` | Multiplica duas matrizes: ret = A · B |
+| `soma_matriz(op, M, N, A, B, ret)` | Soma (`SUM`) ou subtrai (`DIFF`) duas matrizes: ret = A ± B |
 
 ### Utilitários (`random.h`)
 
@@ -190,11 +206,11 @@ Após a compilação, os seguintes executáveis são gerados dentro de `build/`:
 
 | Executável | Descrição |
 |---|---|
-| `ep` / `ep.exe` | Programa principal do EP |
 | `test_ep_tarefa1` / `test_ep_tarefa1.exe` | Testes das funções da Tarefa 1 |
 | `test_ep_tarefa2` / `test_ep_tarefa2.exe` | Testes das funções da Tarefa 2 |
 | `test_ep_tarefa3` / `test_ep_tarefa3.exe` | Testes das funções da Tarefa 3 |
 | `test_ep_tarefa4` / `test_ep_tarefa4.exe` | Testes das funções da Tarefa 4 |
+| `test_ep_tarefa5` / `test_ep_tarefa5.exe` | **Desafio final** — Posicionamento GPS por mínimos quadrados |
 
 ---
 
@@ -204,23 +220,37 @@ Após a compilação, a partir do diretório `build/`:
 
 **Linux:**
 ```bash
-./ep
+# Testes individuais das tarefas
 ./test_ep_tarefa1
 ./test_ep_tarefa2
 ./test_ep_tarefa3
 ./test_ep_tarefa4
+
+# Desafio final — Posicionamento GPS
+./test_ep_tarefa5
 ```
 
 **Windows:**
 ```cmd
-ep.exe
 test_ep_tarefa1.exe
 test_ep_tarefa2.exe
 test_ep_tarefa3.exe
 test_ep_tarefa4.exe
+
+REM Desafio final — Posicionamento GPS
+test_ep_tarefa5.exe
 ```
 
-Os testes utilizam dados gerados aleatoriamente para validar cada função, imprimindo os resultados na saída padrão para verificação manual.
+Os testes das tarefas 1–4 utilizam dados gerados aleatoriamente para validar cada função, imprimindo os resultados na saída padrão para verificação manual.
+
+O teste da **Tarefa 5** (`test_ep_tarefa5`) executa o desafio completo do EP:
+1. Lê os dados dos satélites GPS a partir de `resources/`
+2. Constrói o sistema sobredeterminado Ax = b
+3. Resolve por mínimos quadrados via fatoração QR (Gram-Schmidt)
+4. Calcula o raio terrestre para validação
+5. Analisa os resíduos lineares e não-lineares
+6. Determina o erro de sincronia do relógio (T = w/c)
+7. Converte as coordenadas para latitude/longitude e identifica o estádio
 
 ---
 
@@ -230,3 +260,4 @@ Os testes utilizam dados gerados aleatoriamente para validar cada função, impr
 - **Build system:** CMake ≥ 3.10
 - As funções fazem uso de **VLAs** (*Variable Length Arrays*), um recurso do C99
 - A biblioteca matemática (`-lm`) é linkada no Linux; no Windows com MSVC ela é incluída automaticamente
+- O caminho dos arquivos de entrada (`resources/`) é definido em tempo de compilação via `RESOURCES_DIR`
